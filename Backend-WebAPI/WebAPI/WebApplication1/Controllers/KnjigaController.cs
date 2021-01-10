@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using WebApplication1.Models;
 
@@ -126,6 +127,43 @@ namespace WebApplication1.Controllers
 
                 return "Doslo je do greske!Knjiga nije izbrisana.";
             }
+        }
+        [Route("api/Knjiga/SaveFile")]
+        public string SaveFile()
+        {
+            try
+            {
+                var httpRequest = HttpContext.Current.Request;
+                var postedFile = httpRequest.Files[0];
+                string filename = postedFile.FileName;
+                var physicalPath = HttpContext.Current.Server.MapPath("~/Photos/" + filename);
+                postedFile.SaveAs(physicalPath);
+                return filename;
+            }
+            catch (Exception)
+            {
+
+                return "Greska ! Slika nepoznata";
+            }
+        }
+        [Route("api/Knjiga/NaStanju")]
+        [HttpGet]
+        public HttpResponseMessage GetAllSlobodneKnjige()
+        {
+            string query = @"
+                select KnjigaId,KnjigaIme,KnjigaAutor,KnjigaStanje,KnjigaDatumIzdavanja,
+                        KnjigaDatumVracanja,KnjiguIznajmio,KnjigaSlikaFajl
+                        from dbo.Knjiga where KnjigaStanje=1";
+            DataTable table = new DataTable();
+            using (var con = new SqlConnection(ConfigurationManager.
+                ConnectionStrings["BibliotekaDB"].ConnectionString))
+            using (var cmd = new SqlCommand(query, con))
+            using (var da = new SqlDataAdapter(cmd))
+            {
+                cmd.CommandType = CommandType.Text;
+                da.Fill(table);
+            }
+            return Request.CreateResponse(HttpStatusCode.OK, table);
         }
     }
 }

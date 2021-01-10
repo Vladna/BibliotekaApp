@@ -78,7 +78,6 @@ namespace WebApplication1.Controllers
                  , ClanStatus='" + cla.ClanStatus + @"'
                  , ClanDatumUclanjenja='" + cla.ClanDatumUclanjenja + @"'
                  , IznajmljenaKnjigaId='" + cla.IznajmljenaKnjigaId + @"'
-                
                   where ClanId='" + cla.ClanId + @"'
 
                 ";
