@@ -1,0 +1,52 @@
+<!-- <div class="container">
+
+  <h3 class="d-flex justify-content-center">Sistem za rad biblioteke </h3>
+  <h5 class="d-flex justify-content-center">Narodna biblioteka</h5>
+
+  <nav class="navbar navbar-expand-sm bg-light navbar-dark">
+    <ul class="navbar-nav">
+
+
+      <li class="nav-item">
+        <button routerLinkActive="active current" routerLink="admin" class="m-1 btn btn-light btn-outline-primary"
+          Button>Admin panel</button>
+      </li>
+      <li class="nav-item">
+        <button routerLinkActive="active current" routerLink="korisnik" class="m-1 btn btn-light btn-outline-primary"
+          Button>Korisnik panel</button>
+      </li>
+    </ul>
+  </nav>
+  <router-outlet></router-outlet>
+
+</div>
+ -->
+<!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand">Admin</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+
+      <a class="nav-link navbar-brand mb-0 h1 " routerLinkActive="active current" routerLink="knjige">Spisak knjiga </a>
+
+      <li class="nav-item">
+        <a class="nav-link navbar-brand mb-0 h1" routerLinkActive="active current" routerLink="clanovi">Spisak
+          clanova</a>
+      </li>
+
+
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-primary my-2 my-sm-0" type="submit">Pretraga</button>
+    </form>
+  </div>
+</nav>
+
+
+<router-outlet></router-outlet>
