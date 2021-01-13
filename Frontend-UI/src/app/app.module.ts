@@ -13,6 +13,7 @@ import { ClanShowComponent } from './clan/clan-show/clan-show.component';
 import { ClanEditComponent } from './clan/clan-edit/clan-edit.component';
 import { AdminComponent } from './admin/admin.component';
 import { KorisnikComponent } from './korisnik/korisnik.component';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -31,7 +32,9 @@ import { KorisnikComponent } from './korisnik/korisnik.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Knjige } from 'src/app/models/Knjige';
 import { KnjigeService } from '../knjige.service';
+
 
 @Component({
   selector: 'app-knjige-show',
@@ -10,29 +11,37 @@ import { KnjigeService } from '../knjige.service';
 export class KnjigeShowComponent implements OnInit {
 
   KnjigeLista: any = [];
-  knjiga: Knjige;
-  EditStanje: boolean = false;
+  knjigaItem: Knjige;
+  knjigaZaEdit: Knjige;
+
+  @Output() knjigaEvent = new EventEmitter<Knjige>();
+
   constructor(private service: KnjigeService) { }
 
   ngOnInit(): void {
     this.refreshKnjigaList();
   }
+  sendKnjiga(knjiga: Knjige) {
+    this.knjigaZaEdit = knjiga;
+  }
+
   refreshKnjigaList() {
     this.service.getKnjige().subscribe(data => {
       this.KnjigeLista = data;
       console.log(data);
     });
   }
-  deleteKnjiga(knjiga: Knjige) {
+  deleteKnjiga(knjigaItem: Knjige) {
     if (confirm('Jeste li sigurni?')) {
-      this.service.deleteKnjiga(knjiga.KnjigaId).subscribe(data => {
+      this.service.deleteKnjiga(knjigaItem.KnjigaId).subscribe(data => {
         alert(data.toString());
         this.refreshKnjigaList();
       })
     }
   }
-  editKnjiga(knjiga: Knjige) {
-
+  editKnjiga(knjigaItem: Knjige) {
+    this.knjigaZaEdit = knjigaItem;
+    //this.knjigaEvent.emit(knjigaItem);
   }
 
 }

@@ -24,7 +24,8 @@
             <td>{{knjiga.KnjiguIznajmio}}</td>
 
             <td>
-                <app-knjige-edit></app-knjige-edit>
+                <!-- <button class="btn btn-primary" (click)="editKnjiga(knjiga)">Edit</button> -->
+                <app-knjige-edit (click)="editKnjiga(knjiga)" [knjiga]="knjigaZaEdit"></app-knjige-edit>
             </td>
             <td>
                 <button (click)="deleteKnjiga(knjiga)" type="button" class="btn btn-danger mr-1">
