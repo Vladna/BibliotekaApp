@@ -146,6 +146,27 @@ namespace WebApplication1.Controllers
                 return "Greska ! Slika nepoznata";
             }
         }
+
+       // [Route("api/Knjiga/KnjigaEdit")]
+        [HttpGet]
+        public HttpResponseMessage GetKnjiga(int id)
+        {
+            string query = @"
+                select KnjigaId,KnjigaIme,KnjigaAutor,KnjigaStanje,KnjigaDatumIzdavanja,
+                        KnjigaDatumVracanja,KnjiguIznajmio,KnjigaSlikaFajl
+                        from dbo.Knjiga where KnjigaId="+id;
+            DataTable table = new DataTable();
+            using (var con = new SqlConnection(ConfigurationManager.
+                ConnectionStrings["BibliotekaDB"].ConnectionString))
+            using (var cmd = new SqlCommand(query, con))
+            using (var da = new SqlDataAdapter(cmd))
+            {
+                cmd.CommandType = CommandType.Text;
+                da.Fill(table);
+            }
+            return Request.CreateResponse(HttpStatusCode.OK, table);
+        }
+
         [Route("api/Knjiga/NaStanju")]
         [HttpGet]
         public HttpResponseMessage GetAllSlobodneKnjige()
