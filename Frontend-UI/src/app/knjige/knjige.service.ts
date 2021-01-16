@@ -33,4 +33,10 @@ export class KnjigeService {
     return this.http.get<any>(this.APIUrl + '/Knjiga/NaStanju');
 
   }
+  getKnjigeNaStanju(): Observable<any[]> {
+    return this.http.get<any>(this.APIUrl + '/Knjiga/NaStanju');
+  }
+  getKnjigaEdit(id: number): Observable<Knjige[]> {
+    return this.http.get<any>(this.APIUrl + "/Knjiga/KnjigaEdit/" + id);
+  }
 }

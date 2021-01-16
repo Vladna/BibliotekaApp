@@ -13,12 +13,15 @@ export class KnjigeShowComponent implements OnInit {
   KnjigeLista: any = [];
   knjigaItem: Knjige;
   knjigaZaEdit: Knjige;
-
+  @Input() knjigeStanje: boolean = true;
   @Output() knjigaEvent = new EventEmitter<Knjige>();
 
   constructor(private service: KnjigeService) { }
 
   ngOnInit(): void {
+
+
+
     this.refreshKnjigaList();
   }
   sendKnjiga(knjiga: Knjige) {
@@ -28,7 +31,7 @@ export class KnjigeShowComponent implements OnInit {
   refreshKnjigaList() {
     this.service.getKnjige().subscribe(data => {
       this.KnjigeLista = data;
-      console.log(data);
+      //  console.log(data);
     });
   }
   deleteKnjiga(knjigaItem: Knjige) {
@@ -42,6 +45,15 @@ export class KnjigeShowComponent implements OnInit {
   editKnjiga(knjigaItem: Knjige) {
     this.knjigaZaEdit = knjigaItem;
     //this.knjigaEvent.emit(knjigaItem);
+    console.log(knjigaItem)
+  }
+  getKnjigeNaStanju() {
+    this.service.getAllSlobodneKnjige().subscribe(
+      data => {
+        this.KnjigeLista = data;
+        console.log(data);
+      }
+    )
   }
 
 }

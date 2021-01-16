@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { KnjigeService } from '../knjige.service';
 
 @Component({
   selector: 'app-knjige-add',
@@ -7,9 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class KnjigeAddComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: KnjigeService) { }
 
   ngOnInit(): void {
+  }
+
+  forma = new FormGroup({
+    KnjigaIme: new FormControl('', Validators.required),
+    KnjigaAutor: new FormControl('', Validators.required),
+    KnjigaStanje: new FormControl('', Validators.required),
+    KnjigaDatumIzdavanja: new FormControl('', Validators.required),
+    KnjigaDatumVracanja: new FormControl('', Validators.required),
+    KnjiguIznajmio: new FormControl('', Validators.required)
+  })
+
+
+  addKnjiga() {
+    console.log(this.forma.value);
+    this.service.addKnjiga(this.forma.value).subscribe(
+      res => {
+        alert(res.toString());
+      }
+    )
   }
 
 }

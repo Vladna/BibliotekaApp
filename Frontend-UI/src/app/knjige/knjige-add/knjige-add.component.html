@@ -1,1 +1,41 @@
-<p>knjige-add works!</p>
+<h2>Unosenje nove knjige u sistem:</h2>
+<form [formGroup]="forma">
+    <div class="form-group">
+        <input placeholder="Naziv knjige" formControlName="KnjigaIme" type="text" class="form-control" id="KnjigaIme">
+        <div *ngIf="forma.get('KnjigaIme').touched && forma.get('KnjigaIme').invalid" class="alert alert-danger">Unesite
+            potrebne podatke </div>
+    </div>
+
+    <div class="form-group">
+        <textarea placeholder="Autor knjige" formControlName="KnjigaAutor" class="form-control"
+            id="KnjigaAutor"></textarea>
+        <div *ngIf="forma.get('KnjigaAutor').touched && forma.get('KnjigaAutor').invalid" class="alert alert-danger">
+            Unesite potrebne podatke </div>
+    </div>
+    <div class="form-group">
+        <textarea placeholder="Trenutno stanje knjige" formControlName="KnjigaStanje" class="form-control"
+            id="KnjigaStanje"></textarea>
+        <div *ngIf="forma.get('KnjigaStanje').touched && forma.get('KnjigaStanje').invalid" class="alert alert-danger">
+            Unesite potrebne podatke </div>
+    </div>
+    <div class="form-group">
+        <textarea placeholder="Datum izdavanja knjige " formControlName="KnjigaDatumIzdavanja" class="form-control"
+            id="KnjigaDatumIzdavanja"></textarea>
+        <div *ngIf="forma.get('KnjigaDatumIzdavanja').touched && forma.get('KnjigaDatumIzdavanja').invalid"
+            class="alert alert-danger">Unesite potrebne podatke </div>
+    </div>
+    <div class="form-group">
+        <textarea placeholder="Datum vracanja  knjige" formControlName="KnjigaDatumVracanja" class="form-control"
+            id="KnjigaDatumVracanja"></textarea>
+        <div *ngIf="forma.get('KnjigaDatumVracanja').touched && forma.get('KnjigaDatumVracanja').invalid"
+            class="alert alert-danger">Unesite potrebne podatke </div>
+    </div>
+    <div class="form-group">
+        <textarea placeholder="Iznajmio knjigu" formControlName="KnjiguIznajmio" class="form-control"
+            id="KnjiguIznajmio"></textarea>
+        <div *ngIf="forma.get('KnjiguIznajmio').touched && forma.get('KnjiguIznajmio').invalid"
+            class="alert alert-danger">Unesite potrebne podatke </div>
+    </div>
+    <button type="submit" (click)="addKnjiga()" class="btn btn-primary" [disabled]="forma.invalid">Sacuvaj unesenu
+        knjigu</button>
+</form>
