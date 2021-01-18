@@ -7,6 +7,8 @@ import { AdminComponent } from './admin/admin.component';
 import { KorisnikComponent } from './korisnik/korisnik.component';
 import { KnjigeAddComponent } from './knjige/knjige-add/knjige-add.component';
 import { KnjigeEditComponent } from './knjige/knjige-edit/knjige-edit.component';
+import { ClanShowComponent } from './clan/clan-show/clan-show.component';
+import { ClanAddComponent } from './clan/clan-add/clan-add.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'knjige', pathMatch: 'full' },
@@ -22,7 +24,15 @@ const routes: Routes = [
       { path: 'editknjigu', component: KnjigeEditComponent }
     ]
   },
-  { path: 'clanovi', component: ClanComponent },
+  {
+    path: 'clanovi', component: ClanComponent,
+    children: [
+      {
+        path: 'listaclanova', component: ClanShowComponent
+      },
+      { path: 'dodajclana', component: ClanAddComponent },
+    ]
+  },
 ];
 
 @NgModule({

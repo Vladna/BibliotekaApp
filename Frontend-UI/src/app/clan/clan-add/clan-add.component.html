@@ -1,1 +1,42 @@
-<p>clan-add works!</p>
+<h2>Unosenje novog clana u sistem:</h2>
+<form [formGroup]="forma">
+    <div class="form-group">
+        <input placeholder="Ime" formControlName="ClanIme" type="text" class="form-control" id="ClanIme">
+        <div *ngIf="forma.get('ClanIme').touched && forma.get('ClanIme').invalid" class="alert alert-danger">Unesite
+            potrebne podatke </div>
+    </div>
+
+    <div class="form-group">
+        <textarea placeholder="Prezime" formControlName="ClanPrezime" class="form-control" id="ClanPrezime"></textarea>
+        <div *ngIf="forma.get('ClanPrezime').touched && forma.get('ClanPrezime').invalid" class="alert alert-danger">
+            Unesite potrebne podatke </div>
+    </div>
+    <div class="form-group">
+        <textarea placeholder="Godina rodjenja" formControlName="ClanGodinaRodjenja" class="form-control"
+            id="ClanGodinaRodjenja"></textarea>
+        <div *ngIf="forma.get('ClanGodinaRodjenja').touched && forma.get('ClanGodinaRodjenja').invalid"
+            class="alert alert-danger">
+            Unesite potrebne podatke </div>
+    </div>
+    <div class="form-group">
+        <textarea placeholder="Status clana " formControlName="ClanStatus" class="form-control"
+            id="ClanStatus"></textarea>
+        <div *ngIf="forma.get('ClanStatus').touched && forma.get('ClanStatus').invalid" class="alert alert-danger">
+            Unesite potrebne podatke </div>
+    </div>
+    <div class="form-group">
+        <textarea placeholder="Datum uclanjenja" formControlName="ClanDatumUclanjenja" class="form-control"
+            id="ClanDatumUclanjenja"></textarea>
+        <div *ngIf="forma.get('ClanDatumUclanjenja').touched && forma.get('ClanDatumUclanjenja').invalid"
+            class="alert alert-danger">Unesite potrebne podatke </div>
+    </div>
+    <div class="form-group">
+        <textarea placeholder="Iznajmljena  knjiga id" formControlName="IznajmljenaKnjigaId" class="form-control"
+            id="IznajmljenaKnjigaId"></textarea>
+        <div *ngIf="forma.get('IznajmljenaKnjigaId').touched && forma.get('IznajmljenaKnjigaId').invalid"
+            class="alert alert-danger">Unesite potrebne podatke </div>
+    </div>
+
+    <button type="submit" (click)="addClan()" class="btn btn-primary" [disabled]="forma.invalid">Sacuvaj unesenu
+        knjigu</button>
+</form>

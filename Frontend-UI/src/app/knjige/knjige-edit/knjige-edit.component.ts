@@ -26,6 +26,7 @@ export class KnjigeEditComponent implements OnInit {
 
 
   forma = new FormGroup({
+
     KnjigaIme: new FormControl('', Validators.required),
     KnjigaAutor: new FormControl('', Validators.required),
     KnjigaStanje: new FormControl('', Validators.required),
@@ -48,5 +49,16 @@ export class KnjigeEditComponent implements OnInit {
   }
   clearForma() {
     this.forma.reset();
+  }
+  saveKnjiga(knjigaEdit: Knjige) {
+    console.log(knjigaEdit);
+  }
+  knjigaEdit(knjiga: Knjige) {
+    knjiga.KnjigaId = this.knjiga.KnjigaId;
+    this.service.updateKnjiga(knjiga).subscribe(
+      res => {
+        alert(res.toString());
+      }
+    )
   }
 }

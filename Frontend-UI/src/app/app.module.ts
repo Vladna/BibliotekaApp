@@ -14,6 +14,8 @@ import { ClanEditComponent } from './clan/clan-edit/clan-edit.component';
 import { AdminComponent } from './admin/admin.component';
 import { KorisnikComponent } from './korisnik/korisnik.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { KnjigeService } from './knjige/knjige.service';
+import { ClanoviService } from './clanovi.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [KnjigeService, ClanoviService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

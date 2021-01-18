@@ -16,11 +16,12 @@ export class KnjigeShowComponent implements OnInit {
   @Input() knjigeStanje: boolean = true;
   @Output() knjigaEvent = new EventEmitter<Knjige>();
 
+  KnjigaIdFilter: string = "";
+  KnjigaImeFilter: string = "";
+  KnjigeListaBezFiltera: any = [];
   constructor(private service: KnjigeService) { }
 
   ngOnInit(): void {
-
-
 
     this.refreshKnjigaList();
   }
@@ -32,6 +33,7 @@ export class KnjigeShowComponent implements OnInit {
     this.service.getKnjige().subscribe(data => {
       this.KnjigeLista = data;
       //  console.log(data);
+      this.KnjigeListaBezFiltera = data;
     });
   }
   deleteKnjiga(knjigaItem: Knjige) {
@@ -46,6 +48,7 @@ export class KnjigeShowComponent implements OnInit {
     this.knjigaZaEdit = knjigaItem;
     //this.knjigaEvent.emit(knjigaItem);
     console.log(knjigaItem)
+    // this.refreshKnjigaList();
   }
   getKnjigeNaStanju() {
     this.service.getAllSlobodneKnjige().subscribe(
@@ -55,5 +58,21 @@ export class KnjigeShowComponent implements OnInit {
       }
     )
   }
+  FilterFn() {
+    //console.log("filterfn")
+    var KnjigaIdFilter = this.KnjigaIdFilter;
+    var KnjigaImeFilter = this.KnjigaImeFilter;
+    this.KnjigeLista = this.KnjigeListaBezFiltera.filter(function (el) {
 
+      return el.KnjigaIme.toString().toLowerCase().includes(
+        KnjigaImeFilter.toString().trim().toLowerCase()
+      ) &&
+        el.KnjigaId.toString().toLowerCase().includes(
+          KnjigaIdFilter.toString().trim().toLowerCase()
+        )
+    })
+  }
+  setFilterName(fil: string) {
+
+  }
 }

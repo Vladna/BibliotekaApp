@@ -23,6 +23,10 @@ export class KnjigeAddComponent implements OnInit {
     KnjiguIznajmio: new FormControl('', Validators.required)
   })
 
+  loadClanove() {
+    //get sve clanove
+
+  }
 
   addKnjiga() {
     console.log(this.forma.value);

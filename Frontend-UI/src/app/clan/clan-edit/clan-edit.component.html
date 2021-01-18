@@ -1,1 +1,67 @@
-<p>clan-edit works!</p>
+<div *ngIf="clan!==undefined; else elseBlock">
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">ID: {{clan.ClanId}} </h5>
+        <button type="button" (click)="clearForma()" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <form [formGroup]="forma">
+        <div class="form-group">
+            <input placeholder="{{clan.ClanIme}}" formControlName="ClanIme" type="text" class="form-control"
+                id="ClanIme">
+            <div *ngIf="forma.get('ClanIme').touched && forma.get('ClanIme').invalid" class="alert alert-danger">Unesite
+                potrebne podatke </div>
+        </div>
+
+        <div class="form-group">
+            <textarea placeholder="{{clan.ClanPrezime}}" formControlName="ClanPrezime" class="form-control"
+                id="ClanPrezime"></textarea>
+            <div *ngIf="forma.get('ClanPrezime').touched && forma.get('ClanPrezime').invalid"
+                class="alert alert-danger">
+                Unesite potrebne podatke </div>
+        </div>
+        <div class="form-group">
+            <!-- <textarea placeholder="{{clan.ClanGodinaRodjenja}}" formControlName="ClanGodinaRodjenja"
+                class="form-control" id="ClanGodinaRodjenja"></textarea>
+ -->
+            <input placeholder="{{clan.ClanGodinaRodjenja}}" class="form-control" formControlName="ClanGodinaRodjenja"
+                type="date">
+            <div *ngIf="forma.get('ClanGodinaRodjenja').touched && forma.get('ClanGodinaRodjenja').invalid"
+                class="alert alert-danger">
+                Unesite potrebne podatke </div>
+        </div>
+        <div class="form-group">
+            <textarea placeholder="{{clan.ClanStatus}}" formControlName="ClanStatus" class="form-control"
+                id="ClanStatus"></textarea>
+            <div *ngIf="forma.get('ClanStatus').touched && forma.get('ClanStatus').invalid" class="alert alert-danger">
+                Unesite potrebne podatke </div>
+        </div>
+        <div class="form-group">
+            <!--  <textarea placeholder="Datum uclanjenja" formControlName="ClanDatumUclanjenja" class="form-control"
+                id="ClanDatumUclanjenja"></textarea> -->
+            <input placeholder="{{clan.ClanDatumUclanjenja}}" class="form-control" formControlName="ClanDatumUclanjenja"
+                type="date">
+            <div *ngIf="forma.get('ClanDatumUclanjenja').touched && forma.get('ClanDatumUclanjenja').invalid"
+                class="alert alert-danger">Unesite potrebne podatke </div>
+        </div>
+        <div class="form-group">
+            <textarea placeholder="{{clan.IznajmljenaKnjigaId}}" formControlName="IznajmljenaKnjigaId"
+                class="form-control" id="IznajmljenaKnjigaId"></textarea>
+            <div *ngIf="forma.get('IznajmljenaKnjigaId').touched && forma.get('IznajmljenaKnjigaId').invalid"
+                class="alert alert-danger">Unesite potrebne podatke </div>
+        </div>
+
+
+    </form>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="clearForma()" data-dismiss="modal">Zatvori</button>
+        <button type="button" [disabled]="forma.invalid" (click)="knjigaEdit(forma.value)"
+            class="btn btn-primary">Sacuvaj izmene</button>
+    </div>
+</div>
+
+<ng-template #elseBlock>
+    <h1>Error</h1>
+</ng-template>

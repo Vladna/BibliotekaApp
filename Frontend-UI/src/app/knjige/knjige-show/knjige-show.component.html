@@ -1,13 +1,17 @@
 <div class="container">
-    <div class="row">
-
-        <div class="col">
-            <input type="text" class="form-control" placeholder="Pretrazi naziv">
+    <div class="row  justify-content-around">
+        <div class="d-flex flex-row">
+            <input [(ngModel)]="KnjigaImeFilter" (keyup)="FilterFn()" placeholder="Filter za ime" type="text"
+                class="form-control">
 
         </div>
-        <div class="col">
-            <button class="btn btn-primary">Pretrazi</button>
+        <div class="d-flex flex-row">
+            <input [(ngModel)]="KnjigaIdFilter" (keyup)="FilterFn()" placeholder="Filter za id" type="text"
+                class="form-control">
+
         </div>
+
+
 
 
     </div>
